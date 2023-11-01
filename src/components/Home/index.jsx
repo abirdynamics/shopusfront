@@ -6,13 +6,13 @@ import SectionStyleThree from "../Helpers/SectionStyleThree";
 import SectionStyleTwo from "../Helpers/SectionStyleTwo";
 import ViewMoreTitle from "../Helpers/ViewMoreTitle";
 import Layout from "../Partials/Layout";
+import Ads from "./Ads";
 import Banner from "./Banner";
+import BestSellers from "./BestSellers";
 import BrandSection from "./BrandSection";
 import CampaignCountDown from "./CampaignCountDown";
 import CategorySection from "./CategorySection";
 import TwoColumnAds from "./ProductAds/TwoColumnAds";
-import BestSellers from "./BestSellers";
-import Ads from "./Ads";
 export default function Home({ homepageData }) {
   const [homepage] = useState(homepageData);
   const getsectionTitles = homepageData.section_title;
@@ -63,11 +63,11 @@ export default function Home({ homepageData }) {
               products={
                 homepage.newArrivalProducts.length > 0
                   ? homepage.newArrivalProducts.slice(
-                      0,
-                      homepage.newArrivalProducts.length > 16
-                        ? 16
-                        : homepage.newArrivalProducts.length
-                    )
+                    0,
+                    homepage.newArrivalProducts.length > 16
+                      ? 16
+                      : homepage.newArrivalProducts.length
+                  )
                   : []
               }
               sectionTitle={sectionTitles && sectionTitles.New_Arrivals}
@@ -140,8 +140,8 @@ export default function Home({ homepageData }) {
         <div className="bg-qpurplelow/10">
           {homepage && (
             <TwoColumnAds
-              bannerOne={homepage.banner_three && parseInt(homepage.banner_three.status)===1?homepage.banner_three:null }
-              bannerTwo={homepage.banner_four && parseInt(homepage.banner_four.status)===1?homepage.banner_four:null}
+              bannerOne={homepage.banner_three && parseInt(homepage.banner_three.status) === 1 ? homepage.banner_three : null}
+              bannerTwo={homepage.banner_four && parseInt(homepage.banner_four.status) === 1 ? homepage.banner_four : null}
             />
           )}
 

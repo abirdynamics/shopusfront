@@ -2,23 +2,21 @@ import axios from "axios";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { useEffect, useState, useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
 import apiRequest from "../../../../utils/apiRequest";
 import auth from "../../../../utils/auth";
+import languageModel from "../../../../utils/languageModel";
 import settings from "../../../../utils/settings";
 import { fetchCart } from "../../../store/Cart";
 import { fetchCompareProducts } from "../../../store/compareProduct";
 import { fetchWishlist } from "../../../store/wishlistData";
+import LoginContext from "../../Contexts/LoginContexts";
 import CheckProductIsExistsInFlashSale from "../../Shared/CheckProductIsExistsInFlashSale";
 import ProductView from "../../SingleProductPage/ProductView";
-import Compair from "../icons/Compair";
 import QuickViewIco from "../icons/QuickViewIco";
 import Star from "../icons/Star";
-import ThinLove from "../icons/ThinLove";
-import languageModel from "../../../../utils/languageModel";
-import LoginContext from "../../Contexts/LoginContexts";
 const Redirect = ({ message, linkTxt }) => {
   return (
     <div className="flex space-x-2 items-center">
@@ -136,8 +134,8 @@ export default function ProductCardRowStyleOne({ className, datas }) {
           .catch((err) => {
             toast.error(
               err.response &&
-                err.response.data.message &&
-                err.response.data.message
+              err.response.data.message &&
+              err.response.data.message
             );
           });
         dispatch(fetchCart());
@@ -159,8 +157,8 @@ export default function ProductCardRowStyleOne({ className, datas }) {
           .catch((err) => {
             toast.error(
               err.response &&
-                err.response.data.message &&
-                err.response.data.message
+              err.response.data.message &&
+              err.response.data.message
             );
           });
         dispatch(fetchCart());
@@ -184,14 +182,14 @@ export default function ProductCardRowStyleOne({ className, datas }) {
       if (datas.offer_price) {
         const sumOfferPrice = parseFloat(
           prices.reduce((prev, curr) => parseInt(prev) + parseInt(curr), 0) +
-            parseFloat(datas.offer_price)
+          parseFloat(datas.offer_price)
         );
         setPrice(datas.price);
         setOffer(sumOfferPrice);
       } else {
         const sumPrice = parseFloat(
           prices.reduce((prev, curr) => parseInt(prev) + parseInt(curr), 0) +
-            parseFloat(datas.price)
+          parseFloat(datas.price)
         );
         setPrice(sumPrice);
       }
@@ -254,9 +252,8 @@ export default function ProductCardRowStyleOne({ className, datas }) {
     <div
       style={{ boxShadow: `0px 15px 64px rgba(0, 0, 0, 0.05)` }}
       data-aos="fade-left"
-      className={`product-row-card-style-one w-full h-[214px] bg-white group p-5 relative overflow-hidden rounded-md border border-transparent hover:border-qpurple transition-all duration-300 ease-in-out ${
-        className || ""
-      }`}
+      className={`product-row-card-style-one w-full h-[214px] bg-white group p-5 relative overflow-hidden rounded-md border border-transparent hover:border-qpurple transition-all duration-300 ease-in-out ${className || ""
+        }`}
     >
       <div className="flex space-x-5 items-center w-full h-full">
         <div className="sm:w-[174px] bg-qpurplelow/10 rounded-md w-[150px] h-full overflow-hidden ">
@@ -309,9 +306,8 @@ export default function ProductCardRowStyleOne({ className, datas }) {
             <p className="price">
               <span
                 suppressHydrationWarning
-                className={`main-price  font-500 text-base ${
-                  offerPrice ? "line-through text-qgray" : "text-qpurple"
-                }`}
+                className={`main-price  font-500 text-base ${offerPrice ? "line-through text-qgray" : "text-qpurple"
+                  }`}
               >
                 {offerPrice ? (
                   <span>
@@ -350,7 +346,7 @@ export default function ProductCardRowStyleOne({ className, datas }) {
             <div
               style={{ borderRadius: "30px 0px 0" }}
               onClick={() => addToCart(datas.id)}
-              className="w-[135px] h-[48px] pl-6 pt-3 cursor-pointer bg-qpurplelow/10 group-hover:bg-qpurple absolute -bottom-1 -right-1  rounded transition-all duration-300 ease-in-out"
+              className="w-[135px] h-[48px] pl-6 pt-3 cursor-pointer bg-qpurplelow/10 group-hover:bg-yellow-500 absolute -bottom-1 -right-1  rounded transition-all duration-300 ease-in-out"
             >
               <div className="w-full h-full text-qpurple group-hover:text-white">
                 <span className="text-base font-semibold">Add To Cart</span>
@@ -367,12 +363,12 @@ export default function ProductCardRowStyleOne({ className, datas }) {
           onClick={() => quickViewHandler(datas.slug)}
         >
           <span className="w-10 h-10 block justify-center  overflow-hidden text-qblack hover:text-white items-center transition-all duration-300 ease-in-out  bg-white rounded">
-            <span className="w-full h-full flex justify-center items-center hover:bg-qpurple bg-qpurplelow/10">
+            <span className="w-full h-full flex justify-center items-center hover:bg-yellow-500 bg-qpurplelow/10">
               <QuickViewIco className="fill-current" />
             </span>
           </span>
         </button>
-        {!arWishlist ? (
+        {/* {!arWishlist ? (
           <button
             className=" absolute group-hover:right-4 -right-10 top-[60px] duration-300   transition-all ease-in-out"
             type="button"
@@ -396,8 +392,8 @@ export default function ProductCardRowStyleOne({ className, datas }) {
             </span>
             </span>
           </button>
-        )}
-        <button
+        )} */}
+        {/* <button
           className=" absolute group-hover:right-4 -right-10 top-[107px]  transition-all duration-500 ease-in-out"
           type="button"
           onClick={() => productCompare(datas.id)}
@@ -408,7 +404,7 @@ export default function ProductCardRowStyleOne({ className, datas }) {
                <Compair />
             </span>
           </span>
-        </button>
+        </button> */}
       </div>
       {quickViewModal && quickViewData && (
         <div className="quicke-view-wrapper w-full h-full flex fixed left-0 top-0 justify-center z-50 items-center ">
