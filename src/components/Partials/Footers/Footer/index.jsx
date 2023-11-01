@@ -2,8 +2,8 @@ import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import FontAwesomeCom from "../../../Helpers/icons/FontAwesomeCom";
 import languageModel from "../../../../../utils/languageModel";
+import FontAwesomeCom from "../../../Helpers/icons/FontAwesomeCom";
 import Services from "../../../Home/Services";
 export default function Footer({ settings, contact }) {
   const { websiteSetup } = useSelector((state) => state.websiteSetup);
@@ -37,8 +37,8 @@ export default function Footer({ settings, contact }) {
     if (!socialLink) {
       setSocialLink(
         websiteSetup &&
-          websiteSetup.payload &&
-          websiteSetup.payload.social_links
+        websiteSetup.payload &&
+        websiteSetup.payload.social_links
       );
     }
   });
@@ -47,8 +47,8 @@ export default function Footer({ settings, contact }) {
     if (!firstCol) {
       setFirstCol(
         websiteSetup &&
-          websiteSetup.payload &&
-          websiteSetup.payload.footer_first_col
+        websiteSetup.payload &&
+        websiteSetup.payload.footer_first_col
       );
     }
   });
@@ -56,8 +56,8 @@ export default function Footer({ settings, contact }) {
     if (!secondCol) {
       setSecondCol(
         websiteSetup &&
-          websiteSetup.payload &&
-          websiteSetup.payload.footer_second_col
+        websiteSetup.payload &&
+        websiteSetup.payload.footer_second_col
       );
     }
   });
@@ -65,8 +65,8 @@ export default function Footer({ settings, contact }) {
     if (!thirdCol) {
       setThirdCol(
         websiteSetup &&
-          websiteSetup.payload &&
-          websiteSetup.payload.footer_third_col
+        websiteSetup.payload &&
+        websiteSetup.payload.footer_third_col
       );
     }
   });
@@ -74,10 +74,9 @@ export default function Footer({ settings, contact }) {
   return (
     <footer
       style={{
-        backgroundImage: `url(${
-          footerContent &&
+        backgroundImage: `url(${footerContent &&
           process.env.NEXT_PUBLIC_BASE_URL + footerContent.background_image
-        })`,
+          })`,
         backgroundRepeat: "no-repeat",
         backgroundSize: "cover",
       }}
@@ -99,9 +98,8 @@ export default function Footer({ settings, contact }) {
                         width="153"
                         height="44"
                         objectFit="scale-down"
-                        src={`${
-                          process.env.NEXT_PUBLIC_BASE_URL + settings.logo
-                        }`}
+                        src={`${process.env.NEXT_PUBLIC_BASE_URL + settings.logo
+                          }`}
                         alt="logo"
                       />
                     )}
@@ -343,10 +341,9 @@ export default function Footer({ settings, contact }) {
                   <Image
                     width="318"
                     height="28"
-                    src={`${
-                      process.env.NEXT_PUBLIC_BASE_URL +
+                    src={`${process.env.NEXT_PUBLIC_BASE_URL +
                       footerContent.payment_image
-                    }`}
+                      }`}
                     alt="payment-getways"
                   />
                 </a>

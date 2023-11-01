@@ -1,4 +1,5 @@
 import axios from "axios";
+import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { useContext, useEffect, useState } from "react";
@@ -6,19 +7,15 @@ import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
 import apiRequest from "../../../../utils/apiRequest";
 import auth from "../../../../utils/auth";
+import languageModel from "../../../../utils/languageModel";
 import settings from "../../../../utils/settings";
 import { fetchCart } from "../../../store/Cart";
 import { fetchCompareProducts } from "../../../store/compareProduct";
 import { fetchWishlist } from "../../../store/wishlistData";
+import LoginContext from "../../Contexts/LoginContexts";
 import CheckProductIsExistsInFlashSale from "../../Shared/CheckProductIsExistsInFlashSale";
 import ProductView from "../../SingleProductPage/ProductView";
-import Compair from "../icons/Compair";
-import QuickViewIco from "../icons/QuickViewIco";
 import Star from "../icons/Star";
-import ThinLove from "../icons/ThinLove";
-import Image from "next/image";
-import languageModel from "../../../../utils/languageModel";
-import LoginContext from "../../Contexts/LoginContexts";
 
 const Redirect = ({ message, linkTxt }) => {
   return (
@@ -170,8 +167,8 @@ export default function ProductCardStyleOne({ datas }) {
             console.log(err);
             toast.error(
               err.response &&
-                err.response.data.message &&
-                err.response.data.message
+              err.response.data.message &&
+              err.response.data.message
             );
           });
         dispatch(fetchCart());
@@ -194,8 +191,8 @@ export default function ProductCardStyleOne({ datas }) {
             console.log(err);
             toast.error(
               err.response &&
-                err.response.data.message &&
-                err.response.data.message
+              err.response.data.message &&
+              err.response.data.message
             );
           });
         dispatch(fetchCart());
@@ -220,14 +217,14 @@ export default function ProductCardStyleOne({ datas }) {
       if (datas.offer_price) {
         const sumOfferPrice = parseFloat(
           prices.reduce((prev, curr) => parseInt(prev) + parseInt(curr), 0) +
-            parseFloat(datas.offer_price)
+          parseFloat(datas.offer_price)
         );
         setPrice(datas.price);
         setOffer(sumOfferPrice);
       } else {
         const sumPrice = parseFloat(
           prices.reduce((prev, curr) => parseInt(prev) + parseInt(curr), 0) +
-            parseFloat(datas.price)
+          parseFloat(datas.price)
         );
         setPrice(sumPrice);
       }
@@ -317,9 +314,8 @@ export default function ProductCardStyleOne({ datas }) {
             <p className="price text-start">
               <span
                 suppressHydrationWarning
-                className={`main-price  font-500 text-[16px] ${
-                  offerPrice ? "line-through text-qgray" : "text-qpurple"
-                }`}
+                className={`main-price  font-500 text-[16px] ${offerPrice ? "line-through text-qgray" : "text-qpurple"
+                  }`}
               >
                 {offerPrice ? (
                   <span>
@@ -371,7 +367,14 @@ export default function ProductCardStyleOne({ datas }) {
         </div>
       </div>
       {/* quick-access-btns */}
-      <div className="quick-access-btn">
+      <div
+        className="hidden cursor-pointer group-hover:block group-hover:absolute bg-black text-white top-0 right-0 p-4"
+        onClick={() => quickViewHandler(datas.slug)}
+      >
+        Quick View &nbsp;
+        {/* <FontAwesomeIcon icon={faSearch} style={{ width: 22 }} /> */}
+      </div>
+      {/* <div className="quick-access-btn">
         <button
           className=" absolute left-[77px] top-[243px] transform scale-0 group-hover:scale-100  transition-all ease-in-out"
           onClick={() => quickViewHandler(datas.slug)}
@@ -420,7 +423,7 @@ export default function ProductCardStyleOne({ datas }) {
             </span>
           </span>
         </button>
-      </div>
+      </div> */}
       {quickViewModal && quickViewData && (
         <div className="quicke-view-wrapper w-full h-full flex fixed left-0 top-0 justify-center z-50 items-center ">
           <div

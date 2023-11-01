@@ -1,10 +1,10 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
+import DefaultUser from "../../contexts/DefaultUser";
 import Drawer from "../Mobile/Drawer";
 import Footer from "./Footers/Footer";
 import Header from "./Headers/Header";
-import DefaultUser from "../../contexts/DefaultUser";
 export default function Layout({ children, childrenClasses }) {
   const { websiteSetup } = useSelector((state) => state.websiteSetup);
   const [settings, setSettings] = useState(null);

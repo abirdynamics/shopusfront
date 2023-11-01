@@ -1,12 +1,12 @@
 import Image from "next/image";
 import Link from "next/link";
-import settings from "../../../../utils/settings";
 import { useRouter } from "next/router";
-import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
-import auth from "../../../../utils/auth";
-import apiRequest from "../../../../utils/apiRequest";
+import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
+import apiRequest from "../../../../utils/apiRequest";
+import auth from "../../../../utils/auth";
+import settings from "../../../../utils/settings";
 import { fetchCart } from "../../../store/Cart";
 import CheckProductIsExistsInFlashSale from "../../Shared/CheckProductIsExistsInFlashSale";
 import Star from "../icons/Star";
@@ -87,8 +87,8 @@ export default function ProductCardRowStyleTwo({ className, datas }) {
           .catch((err) => {
             toast.error(
               err.response &&
-                err.response.data.message &&
-                err.response.data.message
+              err.response.data.message &&
+              err.response.data.message
             );
           });
         dispatch(fetchCart());
@@ -104,8 +104,8 @@ export default function ProductCardRowStyleTwo({ className, datas }) {
           .catch((err) => {
             toast.error(
               err.response &&
-                err.response.data.message &&
-                err.response.data.message
+              err.response.data.message &&
+              err.response.data.message
             );
           });
         dispatch(fetchCart());
@@ -125,14 +125,14 @@ export default function ProductCardRowStyleTwo({ className, datas }) {
       if (datas.offer_price) {
         const sumOfferPrice = parseFloat(
           prices.reduce((prev, curr) => parseInt(prev) + parseInt(curr), 0) +
-            parseFloat(datas.offer_price)
+          parseFloat(datas.offer_price)
         );
         setPrice(datas.price);
         setOffer(sumOfferPrice);
       } else {
         const sumPrice = parseFloat(
           prices.reduce((prev, curr) => parseInt(prev) + parseInt(curr), 0) +
-            parseFloat(datas.price)
+          parseFloat(datas.price)
         );
         setPrice(sumPrice);
       }
@@ -156,9 +156,8 @@ export default function ProductCardRowStyleTwo({ className, datas }) {
         <a rel="noopener noreferrer">
           <div
             style={{ boxShadow: "0px 11px 73px rgba(0, 0, 0, 0.07)" }}
-            className={`product-card-row-two rounded-md w-full h-[315px] overflow-hidden bg-white border border-transparent hover:border-qpurple transition-all duration-300 ease-in-out ${
-              className || ""
-            }`}
+            className={`product-card-row-two rounded-md w-full h-[315px] overflow-hidden bg-white border border-transparent hover:border-qpurple transition-all duration-300 ease-in-out ${className || ""
+              }`}
           >
             <div className="w-full h-[105px] bg-white px-5 ">
               <div className="w-full h-full ">
@@ -199,9 +198,8 @@ export default function ProductCardRowStyleTwo({ className, datas }) {
                   <p className="price">
                     <span
                       suppressHydrationWarning
-                      className={`main-price  font-500 text-base ${
-                        offerPrice ? "line-through text-qgray" : "text-qpurple"
-                      }`}
+                      className={`main-price  font-500 text-base ${offerPrice ? "line-through text-qgray" : "text-qpurple"
+                        }`}
                     >
                       {offerPrice ? (
                         <span>{currency_icon && currency_icon + price}</span>
@@ -231,6 +229,16 @@ export default function ProductCardRowStyleTwo({ className, datas }) {
                         />
                       </span>
                     )}
+                    <br />
+                    <div
+                      class="w-full space-x-3 text-white hover:text-purple-500 bg-red-500 text-center rounded-lg relative"
+                      onClick={() => addToCart(datas.id)}
+                    >
+                      <span class="text-base font-semibold">Add To Cart</span>
+                      <i class="fas fa-shopping-cart absolute top-1/2 transform -translate-y-1/2 left-2 text-white opacity-0 icon"></i>
+                    </div>
+
+
                   </p>
                 </div>
               </div>
