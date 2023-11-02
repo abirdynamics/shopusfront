@@ -1,9 +1,8 @@
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import Multivendor from "../../../Shared/Multivendor";
 import languageModel from "../../../../../utils/languageModel";
-import React from "react";
+import Multivendor from "../../../Shared/Multivendor";
 // import FontAwesomeCom from "../../../Helpers/icons/FontAwesomeCom";
 import Image from "next/image";
 
@@ -29,9 +28,8 @@ export default function Navbar({ className }) {
   }, []);
   return (
     <div
-      className={`nav-widget-wrapper w-full  h-[70px] relative z-30  ${
-        className || ""
-      }`}
+      className={`nav-widget-wrapper w-full  h-[70px] relative z-30  ${className || ""
+        }`}
     >
       <div className="container-x mx-auto h-full">
         <div className="w-full h-full relative">
@@ -44,7 +42,7 @@ export default function Navbar({ className }) {
                   className="w-full h-full flex justify-between items-center"
                 >
                   <div className="flex space-x-3 items-center">
-                    <span className="text-white flex justify-center items-center w-[48px] h-[48px] bg-qpurple shadow-2xl rounded-full">
+                    <span className="text-white flex justify-center items-center w-[48px] h-[48px] bg-yellow-600 shadow-2xl rounded-full">
                       <svg
                         width="14"
                         height="9"
@@ -75,9 +73,8 @@ export default function Navbar({ className }) {
                   style={{
                     boxShadow: " 0px 15px 50px 0px rgba(0, 0, 0, 0.14)",
                   }}
-                  className={`category-dropdown  w-[270px] absolute left-0 top-[60px]  ${
-                    categoryToggle ? "block" : "hidden"
-                  }`}
+                  className={`category-dropdown  w-[270px] absolute left-0 top-[60px]  ${categoryToggle ? "block" : "hidden"
+                    }`}
                 >
                   <ul className="categories-list relative">
                     {categoryList &&
@@ -147,11 +144,10 @@ export default function Navbar({ className }) {
                             </a>
                           </Link>
                           <div
-                            className={`sub-category-lvl-two absolute left-[270px] top-0 z-10 w-[270px] ${
-                              item.active_sub_categories.length > 0
-                                ? "bg-white"
-                                : ""
-                            }`}
+                            className={`sub-category-lvl-two absolute left-[270px] top-0 z-10 w-[270px] ${item.active_sub_categories.length > 0
+                              ? "bg-white"
+                              : ""
+                              }`}
                             style={{ height: `${subCatHeight}px` }}
                           >
                             <ul className="">
@@ -206,12 +202,11 @@ export default function Navbar({ className }) {
                                       </a>
                                     </Link>
                                     <div
-                                      className={`sub-category-lvl-three absolute left-[270px] top-0 z-10 w-[270px] ${
-                                        subItem.active_child_categories.length >
+                                      className={`sub-category-lvl-three absolute left-[270px] top-0 z-10 w-[270px] ${subItem.active_child_categories.length >
                                         0
-                                          ? "bg-white"
-                                          : ""
-                                      }`}
+                                        ? "bg-white"
+                                        : ""
+                                        }`}
                                       style={{ height: `${subCatHeight}px` }}
                                     >
                                       <ul className="">
@@ -321,7 +316,7 @@ export default function Navbar({ className }) {
                                           passHref
                                         >
                                           <a rel="noopener noreferrer">
-                                            <span className="text-qgray text-sm font-400 border-b border-transparent hover:border-qpurple hover:text-qpurple cursor-pointer cursor-pointer">
+                                            <span className="text-qgray text-sm font-400 border-b border-transparent hover:border-yellow-600 hover:text-yellow-600 cursor-pointer cursor-pointer">
                                               {subItem.sub_category &&
                                                 subItem.sub_category.name}
                                             </span>
@@ -334,13 +329,12 @@ export default function Navbar({ className }) {
                             </div>
                           ))}
                       </div>
-                      {megaMenuBanner && parseInt(megaMenuBanner.status)===1&& (
+                      {megaMenuBanner && parseInt(megaMenuBanner.status) === 1 && (
                         <div
                           style={{
-                            backgroundImage: `url(${
-                              process.env.NEXT_PUBLIC_BASE_URL +
+                            backgroundImage: `url(${process.env.NEXT_PUBLIC_BASE_URL +
                               megaMenuBanner.image
-                            })`,
+                              })`,
                             backgroundSize: "contain",
                             backgroundRepeat: "no-repeat",
                           }}
@@ -473,7 +467,7 @@ export default function Navbar({ className }) {
                               <li>
                                 <Link href="/faq" passHref>
                                   <a rel="noopener noreferrer">
-                                    <span className="text-qgray text-sm font-400 border-b border-transparent hover:border-qpurple hover:text-qpurple cursor-pointer">
+                                    <span className="text-qgray text-sm font-400 border-b border-transparent hover:border-yellow-600 hover:text-yellow-600 cursor-pointer">
                                       {langCntnt && langCntnt.FAQ}
                                     </span>
                                   </a>
@@ -482,7 +476,7 @@ export default function Navbar({ className }) {
                               <li>
                                 <Link href="/privacy-policy" passHref>
                                   <a rel="noopener noreferrer">
-                                    <span className="text-qgray text-sm font-400 border-b border-transparent hover:border-qpurple hover:text-qpurple cursor-pointer">
+                                    <span className="text-qgray text-sm font-400 border-b border-transparent hover:border-yellow-600 hover:text-yellow-600 cursor-pointer">
                                       {langCntnt && langCntnt.Privacy_Policy}
                                     </span>
                                   </a>
@@ -491,7 +485,7 @@ export default function Navbar({ className }) {
                               <li>
                                 <Link href="/terms-condition" passHref>
                                   <a rel="noopener noreferrer">
-                                    <span className="text-qgray text-sm font-400 border-b border-transparent hover:border-qpurple hover:text-qpurple cursor-pointer">
+                                    <span className="text-qgray text-sm font-400 border-b border-transparent hover:border-yellow-600 hover:text-yellow-600 cursor-pointer">
                                       {langCntnt &&
                                         langCntnt.Term_and_Conditions}
                                     </span>
@@ -502,7 +496,7 @@ export default function Navbar({ className }) {
                                 <li>
                                   <Link href="seller-terms-condition" passHref>
                                     <a rel="noopener noreferrer">
-                                      <span className="text-qgray text-sm font-400 border-b border-transparent hover:border-qpurple hover:text-qpurple cursor-pointer">
+                                      <span className="text-qgray text-sm font-400 border-b border-transparent hover:border-yellow-600 hover:text-yellow-600 cursor-pointer">
                                         {langCntnt &&
                                           langCntnt.Seller_terms_and_conditions}
                                       </span>
@@ -522,7 +516,7 @@ export default function Navbar({ className }) {
                                         passHref
                                       >
                                         <a rel="noopener noreferrer">
-                                          <span className="text-qgray text-sm font-400 border-b border-transparent hover:border-qpurple hover:text-qpurple cursor-pointer">
+                                          <span className="text-qgray text-sm font-400 border-b border-transparent hover:border-yellow-600 hover:text-yellow-600 cursor-pointer">
                                             {item.page_name}
                                           </span>
                                         </a>
