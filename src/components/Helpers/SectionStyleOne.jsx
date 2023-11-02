@@ -1,5 +1,4 @@
-import { useState, useEffect } from "react";
-import CategoryCard from "./Cards/CategoryCard";
+import { useEffect, useState } from "react";
 import ProductCardStyleOne from "./Cards/ProductCardStyleOne";
 import DataIteration from "./DataIteration";
 import LoaderStyleTwo from "./Loaders/LoaderStyleTwo";
@@ -58,9 +57,8 @@ export default function SectionStyleOne({
       {categories.length > 0 && products.length > 0 && (
         <div
           data-aos="fade-up"
-          className={`section-style-one md:py-[60px] py-[30px] bg-qpurplelow/10 ${
-            className || ""
-          }`}
+          className={`section-style-one md:py-[60px] py-[30px] bg-yellow-500/10 ${className || ""
+            }`}
         >
           <ViewMoreTitle
             categoryHandler={categoryHandler}

@@ -360,7 +360,7 @@ h1 span, h2 span, h3 span,h4 span,h5 span,h6 span {
 }
 
 .green-btn {
-    @apply w-full text-[13px] text-qblack font-semibold bg-qpurple flex justify-center items-center h-full;
+    @apply w-full text-[13px] text-qblack font-semibold bg-yellow-600 flex justify-center items-center h-full;
     line-height: 0;
 }
 
@@ -431,7 +431,7 @@ h1 span, h2 span, h3 span,h4 span,h5 span,h6 span {
     margin-right: 5px;
     transform: translateY(-2px);
 
-    @apply bg-qpurple
+    @apply bg-yellow-600
 }
 
 .accordion-item p,
@@ -497,20 +497,20 @@ h1 span, h2 span, h3 span,h4 span,h5 span,h6 span {
 
 /*TODO:=========home one=========*/
 .search-btn {
-    @apply bg-qpurple text-white;
+    @apply bg-yellow-600 text-white;
 }
 
 .cart-wrappwer {
-    @apply border-qpurple;
+    @apply border-yellow-600;
 }
 
 .quomodo-shop-middle-bar
 :is(.compaire > span, .favorite > span, .cart-wrapper .cart > span) {
-    @apply bg-qpurple text-white;
+    @apply bg-yellow-600 text-white;
 }
 
 .quomodo-shop-middle-bar .cart-wrapper .cart-wrappwer {
-    @apply border-qpurple;
+    @apply border-yellow-600;
 }
 
 .nav-widget-wrapper .nav .nav-wrapper li {
@@ -518,7 +518,7 @@ h1 span, h2 span, h3 span,h4 span,h5 span,h6 span {
 }
 
 .quomodo-shop-nav-bar.nav-widget-wrapper {
-    @apply bg-qpurple;
+    @apply bg-yellow-600;
 }
 
 .nav-widget-wrapper .become-seller-btn {
@@ -530,7 +530,7 @@ h1 span, h2 span, h3 span,h4 span,h5 span,h6 span {
 }
 
 .nav-widget-wrapper .category-dropdown .categories-list .category-item:hover {
-    @apply bg-qpurple;
+    @apply bg-yellow-600;
 }
 
 .nav-widget-wrapper .category-dropdown .categories-list .category-item:hover :is(.icon, .name, .icon-arrow) {
@@ -554,7 +554,7 @@ li.category-item {
 .sub-category-lvl-two
 ul
 li.category-item {
-    @apply hover:bg-qpurple hover:text-white;
+    @apply hover:bg-yellow-600 hover:text-white;
 }
 
 .nav-widget-wrapper
@@ -565,7 +565,7 @@ li.category-item {
 .sub-category-lvl-three
 ul
 li.category-item {
-    @apply bg-white hover:bg-qpurple text-qblack;
+    @apply bg-white hover:bg-yellow-600 text-qblack;
 }
 
 /*TODO: ========== home two =============*/

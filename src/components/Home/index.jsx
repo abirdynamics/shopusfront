@@ -137,6 +137,20 @@ export default function Home({ homepageData }) {
             className="category-products"
           />
         )}
+
+        {homepage && (
+          <SectionStyleOne
+            products={homepage.popularCategoryProducts}
+            categories={homepage.popularCategories}
+            categoryBackground={
+              process.env.NEXT_PUBLIC_BASE_URL +
+              homepage.popularCategorySidebarBanner
+            }
+            sectionTitle={sectionTitles && sectionTitles.Popular_Category}
+            seeMoreUrl={`/products?highlight=popular_category`}
+            className="category-products"
+          />
+        )}
         <div className="bg-qpurplelow/10">
           {homepage && (
             <TwoColumnAds
