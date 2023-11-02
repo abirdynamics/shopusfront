@@ -231,11 +231,11 @@ export default function ProductCardRowStyleTwo({ className, datas }) {
                     )}
                     <br />
                     <div
-                      class="w-full space-x-3 text-white hover:text-purple-500 bg-red-500 text-center rounded-lg relative"
+                      className="w-full space-x-3 text-white hover:text-purple-500 bg-red-500 text-center rounded-lg relative"
                       onClick={() => addToCart(datas.id)}
                     >
-                      <span class="text-base font-semibold">Add To Cart</span>
-                      <i class="fas fa-shopping-cart absolute top-1/2 transform -translate-y-1/2 left-2 text-white opacity-0 icon"></i>
+                      <span className="text-base font-semibold">Add To Cart</span>
+                      <i className="fas fa-shopping-cart absolute top-1/2 transform -translate-y-1/2 left-2 text-white opacity-0 icon"></i>
                     </div>
 
 
