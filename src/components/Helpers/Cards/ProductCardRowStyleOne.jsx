@@ -15,8 +15,10 @@ import { fetchWishlist } from "../../../store/wishlistData";
 import LoginContext from "../../Contexts/LoginContexts";
 import CheckProductIsExistsInFlashSale from "../../Shared/CheckProductIsExistsInFlashSale";
 import ProductView from "../../SingleProductPage/ProductView";
+import Compair from "../icons/Compair";
 import QuickViewIco from "../icons/QuickViewIco";
 import Star from "../icons/Star";
+import ThinLove from "../icons/ThinLove";
 const Redirect = ({ message, linkTxt }) => {
   return (
     <div className="flex space-x-2 items-center">
@@ -368,7 +370,7 @@ export default function ProductCardRowStyleOne({ className, datas }) {
             </span>
           </span>
         </button>
-        {/* {!arWishlist ? (
+        {!arWishlist ? (
           <button
             className=" absolute group-hover:right-4 -right-10 top-[60px] duration-300   transition-all ease-in-out"
             type="button"
@@ -376,8 +378,8 @@ export default function ProductCardRowStyleOne({ className, datas }) {
           >
             <span className="w-10 h-10 block overflow-hidden text-qblack hover:text-white justify-center items-center transition-all duration-300 ease-in-out bg-white rounded">
               <span className="w-full h-full flex justify-center items-center hover:bg-qpurple bg-qpurplelow/10">
-               <ThinLove className="fill-current" />
-            </span>
+                <ThinLove className="fill-current" />
+              </span>
             </span>
           </button>
         ) : (
@@ -388,23 +390,23 @@ export default function ProductCardRowStyleOne({ className, datas }) {
           >
             <span className="w-10 h-10 block bg-white overflow-hidden rounded">
               <span className="w-full h-full flex justify-center items-center hover:bg-qpurple bg-qpurplelow/10">
-               <ThinLove fill={true} />
-            </span>
+                <ThinLove fill={true} />
+              </span>
             </span>
           </button>
-        )} */}
-        {/* <button
+        )}
+        <button
           className=" absolute group-hover:right-4 -right-10 top-[107px]  transition-all duration-500 ease-in-out"
           type="button"
           onClick={() => productCompare(datas.id)}
         >
           <span className="w-10 h-10 block overflow-hidden justify-center text-qblack hover:text-white transition-all duration-300 ease-in-out items-center bg-white rounded">
 
-             <span className="w-full h-full flex justify-center items-center hover:bg-qpurple bg-qpurplelow/10">
-               <Compair />
+            <span className="w-full h-full flex justify-center items-center hover:bg-qpurple bg-qpurplelow/10">
+              <Compair />
             </span>
           </span>
-        </button> */}
+        </button>
       </div>
       {quickViewModal && quickViewData && (
         <div className="quicke-view-wrapper w-full h-full flex fixed left-0 top-0 justify-center z-50 items-center ">

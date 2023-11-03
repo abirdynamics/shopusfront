@@ -15,7 +15,10 @@ import { fetchWishlist } from "../../../store/wishlistData";
 import LoginContext from "../../Contexts/LoginContexts";
 import CheckProductIsExistsInFlashSale from "../../Shared/CheckProductIsExistsInFlashSale";
 import ProductView from "../../SingleProductPage/ProductView";
+import Compair from "../icons/Compair";
+import QuickViewIco from "../icons/QuickViewIco";
 import Star from "../icons/Star";
+import ThinLove from "../icons/ThinLove";
 
 const Redirect = ({ message, linkTxt }) => {
   return (
@@ -367,14 +370,14 @@ export default function ProductCardStyleOne({ datas }) {
         </div>
       </div>
       {/* quick-access-btns */}
-      <div
+      {/* <div
         className="hidden cursor-pointer group-hover:block group-hover:absolute bg-black text-white top-0 right-0 p-4"
         onClick={() => quickViewHandler(datas.slug)}
       >
         Quick View &nbsp;
-        {/* <FontAwesomeIcon icon={faSearch} style={{ width: 22 }} /> */}
-      </div>
-      {/* <div className="quick-access-btn">
+        <FontAwesomeIcon icon={faSearch} style={{ width: 22 }} />
+      </div> */}
+      <div className="quick-access-btn">
         <button
           className=" absolute left-[77px] top-[243px] transform scale-0 group-hover:scale-100  transition-all ease-in-out"
           onClick={() => quickViewHandler(datas.slug)}
@@ -423,7 +426,7 @@ export default function ProductCardStyleOne({ datas }) {
             </span>
           </span>
         </button>
-      </div> */}
+      </div>
       {quickViewModal && quickViewData && (
         <div className="quicke-view-wrapper w-full h-full flex fixed left-0 top-0 justify-center z-50 items-center ">
           <div
