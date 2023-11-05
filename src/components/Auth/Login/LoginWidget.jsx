@@ -141,7 +141,6 @@ function LoginWidget({ redirect = true, loginActionPopup, notVerifyHandler }) {
       })
       .then((res) => {
         console.log('res', res)
-        return
         // setLoading(false);
         toast.success(langCntnt && langCntnt.Login_Successfully);
         setEmail("");
