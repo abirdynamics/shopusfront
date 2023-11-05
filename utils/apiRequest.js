@@ -18,7 +18,7 @@ export default {
     }),
   socialLogin: (data) =>
     instance({
-      method: "POST",
+      method: "Get",
       url: "login/google",
       data,
     }),

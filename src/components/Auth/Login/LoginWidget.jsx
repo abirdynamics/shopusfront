@@ -1,7 +1,8 @@
-import { GoogleLogin, GoogleOAuthProvider } from "@react-oauth/google";
+// import { GoogleLogin, GoogleOAuthProvider } from "@react-oauth/google";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import React, { useContext, useEffect, useState } from "react";
+import { GoogleLogin } from 'react-google-login';
 import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
 import apiRequest from "../../../../utils/apiRequest";
@@ -34,6 +35,7 @@ function LoginWidget({ redirect = true, loginActionPopup, notVerifyHandler }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
+  const [googleloading, setGoogleLoading] = useState(false);
   const [checked, setValue] = useState(false);
   const [langCntnt, setLangCntnt] = useState(null);
   const [defaultProfileImg, setDefault] = useState(null);
@@ -128,17 +130,19 @@ function LoginWidget({ redirect = true, loginActionPopup, notVerifyHandler }) {
       });
   };
 
-  const socialLogin = async () => {
+  const socialLogin = async (response) => {
     let token = response.credential;
-    setLoading(true);
+    console.log('token', token)
+    // return
+    // setLoading(true);
     await apiRequest
       .socialLogin({
         token: token
       })
       .then((res) => {
         console.log('res', res)
-        return;
-        setLoading(false);
+        return
+        // setLoading(false);
         toast.success(langCntnt && langCntnt.Login_Successfully);
         setEmail("");
         setPassword("");
@@ -244,19 +248,16 @@ function LoginWidget({ redirect = true, loginActionPopup, notVerifyHandler }) {
 
         <div className="signin-area mb-3.5">
           <div className="flex justify-center">
-            <GoogleOAuthProvider clientId="780685125249-66b413040g0okik5du7kfp26vhs0vkdc.apps.googleusercontent.com" >
-              {/* <button
-                    className="shadow-md w-full mt-3 py-2 uppercase bg-primary hover:bg-primary-light text-white font-bold px-4 rounded focus:outline-none focus:shadow-outline"
-                    type="button"
-                    onClick={()=>handleSocialLogin()}
-                  >
-                    Google Login
-                  </button> */}
-              <GoogleLogin
-                onSuccess={socialLogin}
-                onError={errorMessage}
-              />
-            </GoogleOAuthProvider>
+            {/* <GoogleOAuthProvider clientId="780685125249-66b413040g0okik5du7kfp26vhs0vkdc.apps.googleusercontent.com">
+              <GoogleLogin onSuccess={socialLogin} onError={errorMessage} />
+            </GoogleOAuthProvider> */}
+            <GoogleLogin
+              clientId="780685125249-66b413040g0okik5du7kfp26vhs0vkdc.apps.googleusercontent.com"
+              buttonText="Login with Google"
+              onSuccess={socialLogin}
+              onFailure={socialLogin}
+              cookiePolicy={'single_host_origin'}
+            />
           </div>
         </div>
         <div className="signup-area flex justify-center">
