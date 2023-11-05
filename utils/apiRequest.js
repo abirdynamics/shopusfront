@@ -5,7 +5,7 @@ const instance = axios.create({
   headers: {
     "content-Type": "application/json",
     Accept: "application/json",
-  "X-Requested-With": 'XMLHttpRequest'
+    "X-Requested-With": 'XMLHttpRequest'
   },
 });
 export default {
@@ -16,6 +16,13 @@ export default {
       url: "store-register",
       data,
     }),
+  socialLogin: (data) =>
+    instance({
+      method: "POST",
+      url: "login/google",
+      data,
+    }),
+
   login: (data) =>
     instance({
       method: "POST",

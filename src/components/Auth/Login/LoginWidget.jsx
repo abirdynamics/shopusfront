@@ -1,3 +1,4 @@
+import { GoogleLogin, GoogleOAuthProvider } from "@react-oauth/google";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import React, { useContext, useEffect, useState } from "react";
@@ -126,6 +127,40 @@ function LoginWidget({ redirect = true, loginActionPopup, notVerifyHandler }) {
         console.log(err);
       });
   };
+
+  const socialLogin = async () => {
+    let token = response.credential;
+    setLoading(true);
+    await apiRequest
+      .socialLogin({
+        token: token
+      })
+      .then((res) => {
+        console.log('res', res)
+        return;
+        setLoading(false);
+        toast.success(langCntnt && langCntnt.Login_Successfully);
+        setEmail("");
+        setPassword("");
+        localStorage.removeItem("auth");
+        localStorage.setItem("auth", JSON.stringify(res.data));
+        const activeUser = res.data && {
+          name: res.data.user.name,
+          phone: res.data.user.phone,
+          image: res.data.user.image
+            ? res.data.user.image
+            : defaultProfileImg && defaultProfileImg.image,
+        };
+        if (activeUser) {
+          localStorage.setItem("active-user", JSON.stringify(activeUser));
+        }
+      })
+  };
+
+  const errorMessage = (error) => {
+    console.log('error', error);
+  };
+
   return (
     <div className="w-full">
       <div className="title-area flex flex-col justify-center items-center relative text-center mb-7">
@@ -204,6 +239,24 @@ function LoginWidget({ redirect = true, loginActionPopup, notVerifyHandler }) {
                 </span>
               )}
             </button>
+          </div>
+        </div>
+
+        <div className="signin-area mb-3.5">
+          <div className="flex justify-center">
+            <GoogleOAuthProvider clientId="780685125249-66b413040g0okik5du7kfp26vhs0vkdc.apps.googleusercontent.com" >
+              {/* <button
+                    className="shadow-md w-full mt-3 py-2 uppercase bg-primary hover:bg-primary-light text-white font-bold px-4 rounded focus:outline-none focus:shadow-outline"
+                    type="button"
+                    onClick={()=>handleSocialLogin()}
+                  >
+                    Google Login
+                  </button> */}
+              <GoogleLogin
+                onSuccess={socialLogin}
+                onError={errorMessage}
+              />
+            </GoogleOAuthProvider>
           </div>
         </div>
         <div className="signup-area flex justify-center">
