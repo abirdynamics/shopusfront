@@ -128,7 +128,7 @@ function LoginWidget({ redirect = true, loginActionPopup, notVerifyHandler }) {
       });
   };
 
-  const socialLogin = async () => {
+  const socialLogin = async (response) => {
     let token = response.credential;
     setLoading(true);
     await apiRequest
@@ -137,7 +137,6 @@ function LoginWidget({ redirect = true, loginActionPopup, notVerifyHandler }) {
       })
       .then((res) => {
         console.log('res', res)
-        return;
         setLoading(false);
         toast.success(langCntnt && langCntnt.Login_Successfully);
         setEmail("");
@@ -244,18 +243,8 @@ function LoginWidget({ redirect = true, loginActionPopup, notVerifyHandler }) {
 
         <div className="signin-area mb-3.5">
           <div className="flex justify-center">
-            <GoogleOAuthProvider clientId="780685125249-66b413040g0okik5du7kfp26vhs0vkdc.apps.googleusercontent.com" >
-              {/* <button
-                    className="shadow-md w-full mt-3 py-2 uppercase bg-primary hover:bg-primary-light text-white font-bold px-4 rounded focus:outline-none focus:shadow-outline"
-                    type="button"
-                    onClick={()=>handleSocialLogin()}
-                  >
-                    Google Login
-                  </button> */}
-              <GoogleLogin
-                onSuccess={socialLogin}
-                onError={errorMessage}
-              />
+            <GoogleOAuthProvider clientId="780685125249-66b413040g0okik5du7kfp26vhs0vkdc.apps.googleusercontent.com">
+              <GoogleLogin onSuccess={socialLogin} onError={errorMessage} />
             </GoogleOAuthProvider>
           </div>
         </div>
