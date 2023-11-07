@@ -1,4 +1,5 @@
 import { GoogleLogin, GoogleOAuthProvider } from "@react-oauth/google";
+import axios from "axios";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import React, { useContext, useEffect, useState } from "react";
@@ -133,8 +134,16 @@ function LoginWidget({ redirect = true, loginActionPopup, notVerifyHandler }) {
     console.log('response', response)
     let token = response.credential;
     // setLoading(true);
-    await apiRequest
-      .socialLogin(token)
+    // await apiRequest
+    //   .socialLogin(token)
+    axios.get({
+      baseURL: process.env.NEXT_PUBLIC_BASE_URL + "api/" + `login/google`,
+      headers: {
+        "content-Type": "application/json",
+        Accept: "application/json",
+        "X-Requested-With": 'XMLHttpRequest'
+      }, token
+    })
       .then((res) => {
         console.log('res', res)
         // setLoading(false);
