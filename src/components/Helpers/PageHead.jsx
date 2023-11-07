@@ -13,7 +13,6 @@ function PageHead(props) {
         href={`${favicon ? process.env.NEXT_PUBLIC_BASE_URL + favicon : "/favico.svg"
           }`}
       />
-      <script src="https://accounts.google.com/gsi/client"></script>
     </Head>
   );
 }
