@@ -1,8 +1,7 @@
-// import { GoogleLogin, GoogleOAuthProvider } from "@react-oauth/google";
+import { GoogleLogin, GoogleOAuthProvider } from "@react-oauth/google";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import React, { useContext, useEffect, useState } from "react";
-import { GoogleLogin } from 'react-google-login';
 import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
 import apiRequest from "../../../../utils/apiRequest";
@@ -132,8 +131,8 @@ function LoginWidget({ redirect = true, loginActionPopup, notVerifyHandler }) {
 
   const socialLogin = async (response) => {
     let token = response.credential;
-    console.log('token', token)
-    // return
+    console.log('response', response)
+    return
     // setLoading(true);
     await apiRequest
       .socialLogin({
@@ -158,6 +157,36 @@ function LoginWidget({ redirect = true, loginActionPopup, notVerifyHandler }) {
           localStorage.setItem("active-user", JSON.stringify(activeUser));
         }
       })
+      .catch((err) => {
+        // setLoading(false);
+        if (err.response) {
+          if (
+            err.response.data.notification ===
+            "Please verify your acount. If you didn't get OTP, please resend your OTP and verify"
+          ) {
+            toast.warn(
+              <SEND
+                des={
+                  langCntnt &&
+                  langCntnt.Please_verify_your_account__If_you_didnt_get_OTP__please_resend_your_OTP_and_verify
+                }
+                action={sendOtpHandler}
+                btn={langCntnt && langCntnt.Send_OTP}
+              />,
+              {
+                autoClose: 5000,
+                icon: false,
+                theme: "colored",
+              }
+            );
+          } else {
+            toast.error(langCntnt && langCntnt.Invalid_Credentials);
+          }
+        } else {
+          return false;
+        }
+        console.log(err);
+      });
   };
 
   const errorMessage = (error) => {
@@ -247,16 +276,17 @@ function LoginWidget({ redirect = true, loginActionPopup, notVerifyHandler }) {
 
         <div className="signin-area mb-3.5">
           <div className="flex justify-center">
-            {/* <GoogleOAuthProvider clientId="780685125249-66b413040g0okik5du7kfp26vhs0vkdc.apps.googleusercontent.com">
+            <GoogleOAuthProvider clientId="780685125249-66b413040g0okik5du7kfp26vhs0vkdc.apps.googleusercontent.com">
               <GoogleLogin onSuccess={socialLogin} onError={errorMessage} />
-            </GoogleOAuthProvider> */}
-            <GoogleLogin
-              clientId="780685125249-66b413040g0okik5du7kfp26vhs0vkdc.apps.googleusercontent.com"
+            </GoogleOAuthProvider>
+            {/* <GoogleLogin
+              clientId="780685125249-ge5cetpgg6m8b0u41qge9vhhg05ujbo3.apps.googleusercontent.com"
               buttonText="Login with Google"
               onSuccess={socialLogin}
               onFailure={socialLogin}
               cookiePolicy={'single_host_origin'}
-            />
+              uxMode="popup"
+            /> */}
           </div>
         </div>
         <div className="signup-area flex justify-center">
