@@ -275,7 +275,7 @@ function LoginWidget({ redirect = true, loginActionPopup, notVerifyHandler }) {
 
         <div className="signin-area mb-3.5">
           <div className="flex justify-center">
-            <GoogleOAuthProvider clientId="780685125249-66b413040g0okik5du7kfp26vhs0vkdc.apps.googleusercontent.com">
+            <GoogleOAuthProvider clientId="780685125249-ge5cetpgg6m8b0u41qge9vhhg05ujbo3.apps.googleusercontent.com">
               <GoogleLogin onSuccess={socialLogin} onError={errorMessage} />
             </GoogleOAuthProvider>
             {/* <GoogleLogin
