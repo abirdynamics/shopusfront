@@ -134,9 +134,7 @@ function LoginWidget({ redirect = true, loginActionPopup, notVerifyHandler }) {
     let token = response.credential;
     // setLoading(true);
     await apiRequest
-      .socialLogin({
-        token: token
-      })
+      .socialLogin(token)
       .then((res) => {
         console.log('res', res)
         // setLoading(false);
