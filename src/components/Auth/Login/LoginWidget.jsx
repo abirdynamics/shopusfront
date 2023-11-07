@@ -131,8 +131,6 @@ function LoginWidget({ redirect = true, loginActionPopup, notVerifyHandler }) {
 
   const socialLogin = async (response) => {
     let token = response.credential;
-    console.log('response', response)
-    return
     // setLoading(true);
     await apiRequest
       .socialLogin({
