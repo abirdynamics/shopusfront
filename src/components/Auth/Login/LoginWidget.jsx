@@ -136,14 +136,7 @@ function LoginWidget({ redirect = true, loginActionPopup, notVerifyHandler }) {
     // setLoading(true);
     // await apiRequest
     //   .socialLogin(token)
-    axios.get({
-      baseURL: process.env.NEXT_PUBLIC_BASE_URL + "api/" + `login/google`,
-      headers: {
-        "content-Type": "application/json",
-        Accept: "application/json",
-        "X-Requested-With": 'XMLHttpRequest'
-      }, token
-    })
+    await axios.get(`https://api.vapestoreksa.com/api/token=${token}`)
       .then((res) => {
         console.log('res', res)
         // setLoading(false);
