@@ -140,10 +140,10 @@ function LoginWidget({ redirect = true, loginActionPopup, notVerifyHandler }) {
       token: token,
       clientId: clinetId
     }
-    await axios.post(`https://api.vapestoreksa.com/api/login/google/`, data
+    await axios.post(`https://admin.vapestoreksa.com/api/login/google/`, data
       headers: {
       "content-Type": "application/json",
-      Accept: "application/json",
+      "Accept": "application/json",
       "X-Requested-With": 'XMLHttpRequest'
     },
     )
