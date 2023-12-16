@@ -286,12 +286,17 @@ export default function Navbar({ className }) {
                           mageMenuList.slice(0, 3).map((megaItem) => (
                             <div key={megaItem.id}>
                               <div className="category">
-                                <Link
+                                {/* <Link
                                   href={{
                                     pathname: "/products",
                                     query: {
                                       category: megaItem.category.slug,
                                     },
+                                  }}
+                                > */}
+                                <Link
+                                  href={{
+                                    pathname: "/product-category/" + encodeURIComponent(megaItem.category.slug),
                                   }}
                                 >
                                   <h1 className="text-sm font-700 text-qblack uppercase mb-[13px] cursor-pointer">
@@ -304,7 +309,7 @@ export default function Navbar({ className }) {
                                   {megaItem.sub_categories.length > 0 &&
                                     megaItem.sub_categories.map((subItem) => (
                                       <li key={subItem.id}>
-                                        <Link
+                                        {/* <Link
                                           href={{
                                             pathname: "/products",
                                             query: {
@@ -312,6 +317,12 @@ export default function Navbar({ className }) {
                                                 subItem.sub_category &&
                                                 subItem.sub_category.slug,
                                             },
+                                          }}
+                                          passHref
+                                        > */}
+                                        <Link
+                                          href={{
+                                            pathname: "/product-category/" + encodeURIComponent(subItem.sub_category.slug),
                                           }}
                                           passHref
                                         >
