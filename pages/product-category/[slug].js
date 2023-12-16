@@ -3,13 +3,12 @@ import React, { useEffect } from "react";
 import AllProductPage from "../../src/components/AllProductPage/index";
 import PageHead from "../../src/components/Helpers/PageHead";
 export default function AllProductsPageData(data) {
-    console.log('data', data)
     const { seoSetting } = data.data;
     const router = useRouter();
     useEffect(() => {
-        // if (!data.data) {
-        //   router.push("*");
-        // }
+        if (!data.data) {
+            router.push("*");
+        }
     });
     return (
         <>
