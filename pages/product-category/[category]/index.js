@@ -1,7 +1,7 @@
 import { useRouter } from "next/router";
 import React, { useEffect } from "react";
-import AllProductPage from "../../src/components/AllProductPage/index";
-import PageHead from "../../src/components/Helpers/PageHead";
+import AllProductPage from "../../../src/components/AllProductPage/index";
+import PageHead from "../../../src/components/Helpers/PageHead";
 export default function AllProductsPageData(data) {
   const { seoSetting } = data.data;
   const router = useRouter();
@@ -26,18 +26,10 @@ export default function AllProductsPageData(data) {
 }
 export const getServerSideProps = async (context) => {
   try {
+    // const slug = encodeURIComponent(context.params.slug);
     const res = await fetch(
       `${process.env.NEXT_PUBLIC_BASE_URL}api/product?${context.query.category
-        ? `category=${context.query.category}`
-        : context.query.sub_category
-          ? `sub_category=${context.query.sub_category}`
-          : context.query.child_category
-            ? `child_category=${context.query.child_category}`
-            : context.query.highlight
-              ? `highlight=${context.query.highlight}`
-              : context.query.brand
-                ? `brand=${context.query.brand}`
-                : ""
+        ? `category=${context.query.category}` : ""
       }`
     );
     const data = await res.json();
