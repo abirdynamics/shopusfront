@@ -322,7 +322,7 @@ export default function Navbar({ className }) {
                                         > */}
                                         <Link
                                           href={{
-                                            pathname: "/product-category/" + encodeURIComponent(subItem.sub_category.slug),
+                                            pathname: "/product-category/" + encodeURIComponent(megaItem.category.slug) + "/" + encodeURIComponent(subItem.sub_category.slug),
                                           }}
                                           passHref
                                         >
