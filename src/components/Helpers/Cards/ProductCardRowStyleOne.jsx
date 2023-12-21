@@ -292,10 +292,16 @@ export default function ProductCardRowStyleOne({ className, datas }) {
               )}
             </div>
 
-            <Link
+            {/* <Link
               href={{
                 pathname: "/single-product",
                 query: { slug: datas.slug },
+              }}
+              passHref
+            > */}
+            <Link
+              href={{
+                pathname: "/product/" + encodeURIComponent(datas.slug),
               }}
               passHref
             >

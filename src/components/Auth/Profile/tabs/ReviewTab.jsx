@@ -2,9 +2,9 @@ import Image from "next/image";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
 import DateFormat from "../../../../../utils/DateFormat";
+import languageModel from "../../../../../utils/languageModel";
 import DataIteration from "../../../Helpers/DataIteration";
 import Star from "../../../Helpers/icons/Star";
-import languageModel from "../../../../../utils/languageModel";
 
 export default function ReviewTab({ className, reviews }) {
   const [langCntnt, setLangCntnt] = useState(null);
@@ -24,19 +24,17 @@ export default function ReviewTab({ className, reviews }) {
               <div key={datas.id} className="item">
                 <div
                   style={{ boxShadow: "0px 15px 64px rgba(0, 0, 0, 0.05)" }}
-                  className={`product-row-card-style-one border border-qpurple rounded w-full h-[170px] bg-white group relative overflow-hidden ${
-                    className || ""
-                  }`}
+                  className={`product-row-card-style-one border border-qpurple rounded w-full h-[170px] bg-white group relative overflow-hidden ${className || ""
+                    }`}
                 >
                   <div className="flex space-x-2 items-center w-full h-full p-2">
                     <div className="w-1/3 h-full relative">
                       <Image
                         layout="fill"
                         objectFit="scale-down"
-                        src={`${
-                          process.env.NEXT_PUBLIC_BASE_URL +
+                        src={`${process.env.NEXT_PUBLIC_BASE_URL +
                           datas.product.thumb_image
-                        }`}
+                          }`}
                         alt=""
                         className="w-full h-full object-contain"
                       />
@@ -54,10 +52,15 @@ export default function ReviewTab({ className, reviews }) {
                             </span>
                           ))}
                         </div>
-                        <Link
+                        {/* <Link
                           href={{
                             pathname: "/single-product",
                             query: { slug: datas.product.slug },
+                          }}
+                        > */}
+                        <Link
+                          href={{
+                            pathname: "/product/" + encodeURIComponent(datas.product.slug),
                           }}
                         >
                           <h1 className="title mb-2 sm:text-[15px] text-[13px] font-600 text-qblack leading-[24px] line-clamp-1 hover:text-qpurple cursor-pointer">

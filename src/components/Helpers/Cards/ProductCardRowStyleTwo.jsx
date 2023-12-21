@@ -146,10 +146,16 @@ export default function ProductCardRowStyleTwo({ className, datas }) {
   const { currency_icon } = settings();
   return (
     <>
-      <Link
+      {/* <Link
         href={{
           pathname: "/single-product",
           query: { slug: datas.slug },
+        }}
+        passHref
+      > */}
+      <Link
+        href={{
+          pathname: "/product/" + encodeURIComponent(datas.slug),
         }}
         passHref
       >

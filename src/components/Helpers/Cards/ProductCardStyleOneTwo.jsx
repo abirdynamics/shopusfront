@@ -110,15 +110,15 @@ export default function ProductCardStyleOneTwo({ datas }) {
             });
             toast.error(
               res.response &&
-                res.response.data.message &&
-                res.response.data.message
+              res.response.data.message &&
+              res.response.data.message
             );
           })
           .catch((err) => {
             toast.error(
               err.response &&
-                err.response.data.message &&
-                err.response.data.message
+              err.response.data.message &&
+              err.response.data.message
             );
           });
         dispatch(fetchCart());
@@ -134,8 +134,8 @@ export default function ProductCardStyleOneTwo({ datas }) {
           .catch((err) => {
             toast.error(
               err.response &&
-                err.response.data.message &&
-                err.response.data.message
+              err.response.data.message &&
+              err.response.data.message
             );
           });
         dispatch(fetchCart());
@@ -155,14 +155,14 @@ export default function ProductCardStyleOneTwo({ datas }) {
       if (datas.offer_price) {
         const sumOfferPrice = parseInt(
           prices.reduce((prev, curr) => parseInt(prev) + parseInt(curr), 0) +
-            parseInt(datas.offer_price)
+          parseInt(datas.offer_price)
         );
         setPrice(datas.price);
         setOffer(sumOfferPrice);
       } else {
         const sumPrice = parseInt(
           prices.reduce((prev, curr) => parseInt(prev) + parseInt(curr), 0) +
-            parseInt(datas.price)
+          parseInt(datas.price)
         );
         setPrice(sumPrice);
       }
@@ -241,8 +241,14 @@ export default function ProductCardStyleOneTwo({ datas }) {
           </button>
         </div>
         <div>
-          <Link
+          {/* <Link
             href={{ pathname: "/single-product", query: { slug: datas.slug } }}
+            passHref
+          > */}
+          <Link
+            href={{
+              pathname: "/product/" + encodeURIComponent(datas.slug),
+            }}
             passHref
           >
             <a rel="noopener noreferrer">
@@ -266,9 +272,8 @@ export default function ProductCardStyleOneTwo({ datas }) {
               )}
               <span
                 suppressHydrationWarning
-                className={`main-price font-600 text-center text-[18px] ${
-                  offerPrice ? "line-through text-qgray" : "text-qred"
-                }`}
+                className={`main-price font-600 text-center text-[18px] ${offerPrice ? "line-through text-qgray" : "text-qred"
+                  }`}
               >
                 {offerPrice ? (
                   <span>{currency_icon && currency_icon + price}</span>
