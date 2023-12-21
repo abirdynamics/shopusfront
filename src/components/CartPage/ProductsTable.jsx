@@ -1,10 +1,10 @@
 import Image from "next/image";
+import Link from "next/link";
 import { useEffect, useState } from "react";
+import languageModel from "../../../utils/languageModel";
 import settings from "../../../utils/settings";
 import InputQuantityCom from "../Helpers/InputQuantityCom";
 import CheckProductIsExistsInFlashSale from "../Shared/CheckProductIsExistsInFlashSale";
-import languageModel from "../../../utils/languageModel";
-import Link from "next/link";
 
 export default function ProductsTable({
   className,
@@ -50,8 +50,8 @@ export default function ProductsTable({
       const prices =
         item.variants.length > 0
           ? item.variants.map((item) =>
-              item.variant_item ? parseInt(item.variant_item.price) : 0
-            )
+            item.variant_item ? parseInt(item.variant_item.price) : 0
+          )
           : false;
       const sumVarient = prices ? prices.reduce((p, c) => p + c) : false;
       if (sumVarient) {
@@ -100,19 +100,23 @@ export default function ProductsTable({
                       <div className="w-[80px] h-[80px] rounded overflow-hidden flex justify-center items-center border border-qpurplelow/10 relative">
                         <Image
                           layout="fill"
-                          src={`${
-                            process.env.NEXT_PUBLIC_BASE_URL +
+                          src={`${process.env.NEXT_PUBLIC_BASE_URL +
                             item.product.thumb_image
-                          }`}
+                            }`}
                           alt="product"
                           className="w-full h-full object-contain"
                         />
                       </div>
                       <div className="flex-1 flex flex-col">
-                        <Link
+                        {/* <Link
                           href={{
                             pathname: "/single-product",
                             query: { slug: item.product.slug },
+                          }}
+                        > */}
+                        <Link
+                          href={{
+                            pathname: "/product/" + encodeURIComponent(item.product.slug),
                           }}
                         >
                           <a rel="noopener noreferrer">

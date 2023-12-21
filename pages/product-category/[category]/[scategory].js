@@ -6,9 +6,9 @@ export default function AllProductsPageData(data) {
     const { seoSetting } = data.data;
     const router = useRouter();
     useEffect(() => {
-        // if (!data.data) {
-        //     router.push("*");
-        // }
+        if (!data.data) {
+            router.push("*");
+        }
     });
     return (
         <>
@@ -25,25 +25,22 @@ export default function AllProductsPageData(data) {
     );
 }
 export const getServerSideProps = async (context) => {
-    // try {
-    const slug = encodeURIComponent(context.params.slug);
-    // const res = await fetch( `${process.env.NEXT_PUBLIC_BASE_URL}api/product/${slug}`);
-    // const [category, subCategory] = slug.split('/')
-    const res = await fetch(
-        `${process.env.NEXT_PUBLIC_BASE_URL}api/product?${slug
-            ? `sub-category=${slug}` : ""}`);
-    const data = await res.json();
-    return {
-        props: {
-            data,
-        },
-    };
-    // } catch (err) {
-    //     console.log(err);
-    //     return {
-    //         props: {
-    //             data: false,
-    //         },
-    //     };
-    // }
+    try {
+        const slug = encodeURIComponent(context.params.slug);
+        const res = await fetch(
+            `${process.env.NEXT_PUBLIC_BASE_URL}api/product?${slug ? `sub-category=${slug}` : ""}`);
+        const data = await res.json();
+        return {
+            props: {
+                data,
+            },
+        };
+    } catch (err) {
+        console.log(err);
+        return {
+            props: {
+                data: false,
+            },
+        };
+    }
 };
