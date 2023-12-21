@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useRouter } from "next/router";
+import QRCode from 'qrcode.react';
 import React, { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import isAuth from "../../../Middleware/isAuth";
@@ -28,8 +29,7 @@ function OrderCom() {
       if (!resData) {
         axios
           .get(
-            `${
-              process.env.NEXT_PUBLIC_BASE_URL
+            `${process.env.NEXT_PUBLIC_BASE_URL
             }api/user/order-show/${id}?token=${auth().access_token}`
           )
           .then((res) => {
@@ -37,9 +37,9 @@ function OrderCom() {
             setLoadingState(false);
             const status = () => {
               switch (
-                res.data &&
-                res.data.order &&
-                parseInt(res.data.order.order_status)
+              res.data &&
+              res.data.order &&
+              parseInt(res.data.order.order_status)
               ) {
                 case 0:
                   return "Pending";
@@ -131,88 +131,84 @@ function OrderCom() {
             {!loadingState ? (
               <>
                 {
-                    resData && (
-                        <div data-aos="fade-up" data-aos-duration="1000" className="w-full h-[168px]  bg-qpurplelow/10 rounded-2xl mb-10 relative print:hidden">
-                          <div className="w-full px-10 flex justify-between pt-3 mb-7">
-                            <div>
-                              {resData.order_delivered_date && (
-                                  <p className="text-base font-400">
-                                    {langCntnt && langCntnt.Delivered_on}{" "}
-                                    {resData.order_delivered_date}
-                                  </p>
-                              )}
-                            </div>
-                            <div>
-                              {orderStatus === "Declined" && (
-                                  <p className="text-base font-bold text-qred mr-10">
-                                    {langCntnt && langCntnt.Your_order_is_declined}!
-                                  </p>
-                              )}
-                            </div>
-                          </div>
-                          <div className="flex lg:space-x-[373px] space-x-[90px] w-full h-full justify-center">
-                            <div className="relative">
-                              <div className="w-[30px] h-[30px] border-[8px] rounded-full border-qpurple bg-white relative z-20"></div>
-                              <p className="absolute -left-4 top-10 sm:text-base text-sm font-400">
-                                {langCntnt && langCntnt.Pending}
-                              </p>
-                            </div>
-                            {/*orderStatus*/}
-                            <div className="relative">
-                              <div
-                                  className={`w-[30px] h-[30px] border-[8px] rounded-full  bg-white relative z-20 ${
-                                      orderStatus === "Progress" ||
-                                      orderStatus === "Delivered" ||
-                                      orderStatus === "Completed"
-                                          ? "border-qpurple"
-                                          : "border-qgray"
-                                  }`}
-                              ></div>
-                              <div
-                                  className={`lg:w-[400px] w-[100px] h-[8px] absolute lg:-left-[390px] -left-[92px] top-[10px] z-10  ${
-                                      orderStatus === "Progress" ||
-                                      orderStatus === "Delivered" ||
-                                      orderStatus === "Completed"
-                                          ? "bg-qpurple"
-                                          : "bg-white"
-                                  }`}
-                              ></div>
-                              <p className="absolute -left-4 top-10 sm:text-base text-sm font-400">
-                                {langCntnt && langCntnt.Progress}
-                              </p>
-                            </div>
-                            <div className="relative">
-                              <div
-                                  className={`w-[30px] h-[30px] border-[8px] rounded-full bg-white  relative z-20 ${
-                                      orderStatus === "Delivered" ||
-                                      orderStatus === "Completed"
-                                          ? "border-qpurple"
-                                          : "border-qgray"
-                                  }`}
-                              ></div>
-                              <div
-                                  className={`lg:w-[400px] w-[100px] h-[8px] absolute lg:-left-[390px] -left-[92px] top-[10px] z-10 ${
-                                      orderStatus === "Delivered" ||
-                                      orderStatus === "Completed"
-                                          ? "bg-qpurple"
-                                          : "bg-white"
-                                  }`}
-                              ></div>
-                              <p className="absolute -left-4 top-10 sm:text-base text-sm font-400">
-                                {langCntnt && langCntnt.Delivered}
-                              </p>
-                            </div>
-                          </div>
+                  resData && (
+                    <div data-aos="fade-up" data-aos-duration="1000" className="w-full h-[168px]  bg-qpurplelow/10 rounded-2xl mb-10 relative print:hidden">
+                      <div className="w-full px-10 flex justify-between pt-3 mb-7">
+                        <div>
+                          {resData.order_delivered_date && (
+                            <p className="text-base font-400">
+                              {langCntnt && langCntnt.Delivered_on}{" "}
+                              {resData.order_delivered_date}
+                            </p>
+                          )}
                         </div>
-                    )
+                        <div>
+                          {orderStatus === "Declined" && (
+                            <p className="text-base font-bold text-qred mr-10">
+                              {langCntnt && langCntnt.Your_order_is_declined}!
+                            </p>
+                          )}
+                        </div>
+                      </div>
+                      <div className="flex lg:space-x-[373px] space-x-[90px] w-full h-full justify-center">
+                        <div className="relative">
+                          <div className="w-[30px] h-[30px] border-[8px] rounded-full border-qpurple bg-white relative z-20"></div>
+                          <p className="absolute -left-4 top-10 sm:text-base text-sm font-400">
+                            {langCntnt && langCntnt.Pending}
+                          </p>
+                        </div>
+                        {/*orderStatus*/}
+                        <div className="relative">
+                          <div
+                            className={`w-[30px] h-[30px] border-[8px] rounded-full  bg-white relative z-20 ${orderStatus === "Progress" ||
+                              orderStatus === "Delivered" ||
+                              orderStatus === "Completed"
+                              ? "border-qpurple"
+                              : "border-qgray"
+                              }`}
+                          ></div>
+                          <div
+                            className={`lg:w-[400px] w-[100px] h-[8px] absolute lg:-left-[390px] -left-[92px] top-[10px] z-10  ${orderStatus === "Progress" ||
+                              orderStatus === "Delivered" ||
+                              orderStatus === "Completed"
+                              ? "bg-qpurple"
+                              : "bg-white"
+                              }`}
+                          ></div>
+                          <p className="absolute -left-4 top-10 sm:text-base text-sm font-400">
+                            {langCntnt && langCntnt.Progress}
+                          </p>
+                        </div>
+                        <div className="relative">
+                          <div
+                            className={`w-[30px] h-[30px] border-[8px] rounded-full bg-white  relative z-20 ${orderStatus === "Delivered" ||
+                              orderStatus === "Completed"
+                              ? "border-qpurple"
+                              : "border-qgray"
+                              }`}
+                          ></div>
+                          <div
+                            className={`lg:w-[400px] w-[100px] h-[8px] absolute lg:-left-[390px] -left-[92px] top-[10px] z-10 ${orderStatus === "Delivered" ||
+                              orderStatus === "Completed"
+                              ? "bg-qpurple"
+                              : "bg-white"
+                              }`}
+                          ></div>
+                          <p className="absolute -left-4 top-10 sm:text-base text-sm font-400">
+                            {langCntnt && langCntnt.Delivered}
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  )
                 }
               </>
-            ):(
-                <div className="w-full min-h-screen">
-                  <div className="mt-20">
-                    <LoaderStyleTwo/>
-                  </div>
+            ) : (
+              <div className="w-full min-h-screen">
+                <div className="mt-20">
+                  <LoaderStyleTwo />
                 </div>
+              </div>
             )}
 
             <div className="bg-white lg:p-10 p-3 rounded-xl">
@@ -233,42 +229,43 @@ function OrderCom() {
                         </li>
                         <li className="text-[22px]n text-qgray">
                           {langCntnt && langCntnt.Billing_Address}:{" "}
-                          <span className="text-qpurple">{`${
-                            resData.order_address &&
+                          <span className="text-qpurple">{`${resData.order_address &&
                             resData.order_address.billing_address
-                          },${
-                            resData.order_address &&
+                            },${resData.order_address &&
                             resData.order_address.billing_city
-                          },${
-                            resData.order_address &&
+                            },${resData.order_address &&
                             resData.order_address.billing_state
-                          }`}</span>
+                            }`}</span>
                         </li>
                         <li className="text-[22px]n text-qgray">
                           {langCntnt && langCntnt.Shipping_Address}:{" "}
-                          <span className="text-qpurple">{`${
-                            resData.order_address &&
+                          <span className="text-qpurple">{`${resData.order_address &&
                             resData.order_address.shipping_address
-                          },${
-                            resData.order_address &&
+                            },${resData.order_address &&
                             resData.order_address.shipping_city
-                          },${
-                            resData.order_address &&
+                            },${resData.order_address &&
                             resData.order_address.shipping_state
-                          }`}</span>
+                            }`}</span>
                         </li>
                         <li className="text-[22px]n text-qgray">
                           {langCntnt && langCntnt.Type}:{" "}
                           <span className="text-qpurple">
                             {resData.order_address &&
-                            parseInt(
-                              resData.order_address.shipping_address_type
-                            ) === 1
+                              parseInt(
+                                resData.order_address.shipping_address_type
+                              ) === 1
                               ? langCntnt && langCntnt.Office
                               : langCntnt && langCntnt.home}
                           </span>
                         </li>
                       </ul>
+                    </div>
+                    <div className="flex sm:justify-start print:justify-start justify-center sm:mr-10">
+                      <div>
+                        <div>
+                          <QRCode value={`https://www.vapestoreksa.com/order/${resData.order_id}`} />
+                        </div>
+                      </div>
                     </div>
                     <div>
                       <button
