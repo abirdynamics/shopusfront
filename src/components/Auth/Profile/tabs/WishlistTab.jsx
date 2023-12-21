@@ -5,9 +5,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
 import apiRequest from "../../../../../utils/apiRequest";
 import auth from "../../../../../utils/auth";
+import languageModel from "../../../../../utils/languageModel";
 import settings from "../../../../../utils/settings";
 import { fetchWishlist } from "../../../../store/wishlistData";
-import languageModel from "../../../../../utils/languageModel";
 
 export default function WishlistTab({ className }) {
   const dispatch = useDispatch();
@@ -35,12 +35,12 @@ export default function WishlistTab({ className }) {
     if (wishlists) {
       setMainProducts(
         wishlists &&
-          wishlists.data.map((item) => {
-            return {
-              ...item,
-              totalPrice: item.product.price,
-            };
-          })
+        wishlists.data.map((item) => {
+          return {
+            ...item,
+            totalPrice: item.product.price,
+          };
+        })
       );
     } else {
       setMainProducts(null);
@@ -88,19 +88,23 @@ export default function WishlistTab({ className }) {
                         <div className="w-[80px] h-[80px] rounded overflow-hidden flex justify-center items-center border border-qpurplelow/10 relative">
                           <Image
                             layout="fill"
-                            src={`${
-                              process.env.NEXT_PUBLIC_BASE_URL +
+                            src={`${process.env.NEXT_PUBLIC_BASE_URL +
                               item.product.thumb_image
-                            }`}
+                              }`}
                             alt="product"
                             className="w-full h-full object-contain"
                           />
                         </div>
                         <div className="flex-1 flex flex-col">
-                          <Link
+                          {/* <Link
                             href={{
                               pathname: "/single-product",
                               query: { slug: item.product.slug },
+                            }}
+                          > */}
+                          <Link
+                            href={{
+                              pathname: "/product/" + encodeURIComponent(item.product.slug),
                             }}
                           >
                             <p className="font-medium text-[15px] text-qblack hover:text-qpurple cursor-pointer">

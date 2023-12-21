@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
 import apiRequest from "../../../../utils/apiRequest";
 import auth from "../../../../utils/auth";
+import languageModel from "../../../../utils/languageModel";
 import settings from "../../../../utils/settings";
 import { fetchCart } from "../../../store/Cart";
 import { fetchCompareProducts } from "../../../store/compareProduct";
@@ -16,7 +17,6 @@ import ProductView from "../../SingleProductPage/ProductView";
 import Compair from "../icons/Compair";
 import QuickViewIco from "../icons/QuickViewIco";
 import ThinLove from "../icons/ThinLove";
-import languageModel from "../../../../utils/languageModel";
 const Redirect = ({ message, linkTxt }) => {
   return (
     <div className="flex space-x-2 items-center">
@@ -120,8 +120,8 @@ export default function ProductCardRowStyleOneTwo({ className, datas }) {
           .catch((err) => {
             toast.error(
               err.response &&
-                err.response.data.message &&
-                err.response.data.message
+              err.response.data.message &&
+              err.response.data.message
             );
           });
         dispatch(fetchCart());
@@ -143,8 +143,8 @@ export default function ProductCardRowStyleOneTwo({ className, datas }) {
           .catch((err) => {
             toast.error(
               err.response &&
-                err.response.data.message &&
-                err.response.data.message
+              err.response.data.message &&
+              err.response.data.message
             );
           });
         dispatch(fetchCart());
@@ -164,14 +164,14 @@ export default function ProductCardRowStyleOneTwo({ className, datas }) {
       if (datas.offer_price) {
         const sumOfferPrice = parseInt(
           prices.reduce((prev, curr) => parseInt(prev) + parseInt(curr), 0) +
-            parseInt(datas.offer_price)
+          parseInt(datas.offer_price)
         );
         setPrice(datas.price);
         setOffer(sumOfferPrice);
       } else {
         const sumPrice = parseInt(
           prices.reduce((prev, curr) => parseInt(prev) + parseInt(curr), 0) +
-            parseInt(datas.price)
+          parseInt(datas.price)
         );
         setPrice(sumPrice);
       }
@@ -226,9 +226,8 @@ export default function ProductCardRowStyleOneTwo({ className, datas }) {
   return (
     <div
       data-aos="fade-left"
-      className={`product-row-card-style-one-two w-full h-[250px] bg-white group relative overflow-hidden ${
-        className || ""
-      }`}
+      className={`product-row-card-style-one-two w-full h-[250px] bg-white group relative overflow-hidden ${className || ""
+        }`}
     >
       <div className="flex space-x-5 items-center w-full h-full p-[16px]">
         <div className="w-1/3 h-full relative">
@@ -242,10 +241,16 @@ export default function ProductCardRowStyleOneTwo({ className, datas }) {
         </div>
         <div className="flex-1 flex flex-col justify-center h-full">
           <div>
-            <Link
+            {/* <Link
               href={{
                 pathname: "/single-product",
                 query: { slug: datas.slug },
+              }}
+              passHref
+            > */}
+            <Link
+              href={{
+                pathname: "/product/" + encodeURIComponent(datas.slug),
               }}
               passHref
             >
@@ -269,9 +274,8 @@ export default function ProductCardRowStyleOneTwo({ className, datas }) {
               )}
               <span
                 suppressHydrationWarning
-                className={`main-price font-600 sm:text-[18px] text-base ${
-                  offerPrice ? "line-through text-qgray" : "text-qred"
-                }`}
+                className={`main-price font-600 sm:text-[18px] text-base ${offerPrice ? "line-through text-qgray" : "text-qred"
+                  }`}
               >
                 {offerPrice ? (
                   <span>{currency_icon && currency_icon + price}</span>

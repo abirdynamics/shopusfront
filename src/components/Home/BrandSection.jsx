@@ -20,10 +20,15 @@ export default function BrandSection({ className, sectionTitle, brands = [] }) {
           >
             {({ datas }) => (
               <div key={datas.id} className="item">
-                <Link
+                {/* <Link
                   href={{
                     pathname: "/products",
                     query: { brand: datas.slug },
+                  }}
+                > */}
+                <Link
+                  href={{
+                    pathname: "/brands/" + encodeURIComponent(datas.slug),
                   }}
                 >
                   <div className=" border border-qpurplelow/10 w-full h-[130px] group   transition duration-300 ease-in-out bg-white flex justify-center items-center relative cursor-pointer">

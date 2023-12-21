@@ -1,21 +1,21 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { useEffect, useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { FacebookShareButton, TwitterShareButton } from "react-share";
 import { toast } from "react-toastify";
 import apiRequest from "../../../utils/apiRequest";
 import auth from "../../../utils/auth";
+import languageModel from "../../../utils/languageModel";
 import settings from "../../../utils/settings";
 import { fetchCart } from "../../store/Cart";
 import { fetchWishlist } from "../../store/wishlistData";
+import LoginContext from "../Contexts/LoginContexts";
+import Selectbox from "../Helpers/Selectbox";
 import Star from "../Helpers/icons/Star";
 import ThinLove from "../Helpers/icons/ThinLove";
-import Selectbox from "../Helpers/Selectbox";
 import CheckProductIsExistsInFlashSale from "../Shared/CheckProductIsExistsInFlashSale";
-import languageModel from "../../../utils/languageModel";
-import LoginContext from "../Contexts/LoginContexts";
 const Redirect = ({ message, linkTxt }) => {
   return (
     <div className="flex space-x-2 items-center">
@@ -44,9 +44,9 @@ export default function ProductView({
     product && product.active_variants.length > 0 && product.active_variants;
   const [getFirstVarients, setFirstVarients] = useState(
     varients &&
-      varients.map((v) =>
-        v.active_variant_items.length > 0 ? v.active_variant_items[0] : {}
-      )
+    varients.map((v) =>
+      v.active_variant_items.length > 0 ? v.active_variant_items[0] : {}
+    )
   );
   const [langCntnt, setLangCntnt] = useState(null);
   useEffect(() => {
@@ -56,7 +56,7 @@ export default function ProductView({
   const [offerPrice, setOffer] = useState(null);
   const [src, setSrc] = useState(product.thumb_image);
   useEffect(() => {
-   setSrc(product.thumb_image)
+    setSrc(product.thumb_image)
   }, [product]);
 
   const changeImgHandler = (current) => {
@@ -93,7 +93,7 @@ export default function ProductView({
         getFirstVarients.map((v) => (v.price ? v.price : 0));
       const sumPrice = parseFloat(
         prices.reduce((prev, curr) => parseFloat(prev) + parseFloat(curr), 0) +
-          parseFloat(product.price)
+        parseFloat(product.price)
       );
       setPrice(parseFloat(sumPrice));
       if (product.offer_price) {
@@ -195,16 +195,16 @@ export default function ProductView({
             );
             toast.error(
               res.response &&
-                res.response.data.message &&
-                res.response.data.message
+              res.response.data.message &&
+              res.response.data.message
             );
           })
           .catch((err) => {
             console.log(err);
             toast.error(
               err.response &&
-                err.response.data.message &&
-                err.response.data.message
+              err.response.data.message &&
+              err.response.data.message
             );
           });
         dispatch(fetchCart());
@@ -295,9 +295,8 @@ export default function ProductView({
   return (
     <>
       <div
-        className={`product-view w-full lg:flex justify-between h-full ${
-          className || ""
-        }`}
+        className={`product-view w-full lg:flex justify-between h-full ${className || ""
+          }`}
       >
         <div
           data-aos="fade-right"
@@ -326,13 +325,11 @@ export default function ProductView({
                 <Image
                   layout="fill"
                   objectFit="scale-down"
-                  src={`${
-                    process.env.NEXT_PUBLIC_BASE_URL + product.thumb_image
-                  }`}
+                  src={`${process.env.NEXT_PUBLIC_BASE_URL + product.thumb_image
+                    }`}
                   alt=""
-                  className={`w-full h-full object-contain transform scale-110 ${
-                    src !== product.thumb_image ? "opacity-50" : ""
-                  } `}
+                  className={`w-full h-full object-contain transform scale-110 ${src !== product.thumb_image ? "opacity-50" : ""
+                    } `}
                 />
               </div>
               {productsImg &&
@@ -348,9 +345,8 @@ export default function ProductView({
                       objectFit="scale-down"
                       src={`${process.env.NEXT_PUBLIC_BASE_URL + img.image}`}
                       alt=""
-                      className={`w-full h-full object-contain ${
-                        src !== img.image ? "opacity-50" : ""
-                      } `}
+                      className={`w-full h-full object-contain ${src !== img.image ? "opacity-50" : ""
+                        } `}
                     />
                   </div>
                 ))}
@@ -409,11 +405,10 @@ export default function ProductView({
             >
               <span
                 suppressHydrationWarning
-                className={`main-price  font-600  ${
-                  offerPrice
-                    ? "line-through text-qgray text-[15px]"
-                    : "text-qred text-[24px]"
-                }`}
+                className={`main-price  font-600  ${offerPrice
+                  ? "line-through text-qgray text-[15px]"
+                  : "text-qred text-[24px]"
+                  }`}
               >
                 {offerPrice ? (
                   <span>{currency_icon + price}</span>
@@ -447,9 +442,8 @@ export default function ProductView({
 
             <div data-aos="fade-up" className="mb-[30px]">
               <div
-                className={`text-qgray text-sm text-normal leading-7 ${
-                  more ? "" : "line-clamp-2"
-                }`}
+                className={`text-qgray text-sm text-normal leading-7 ${more ? "" : "line-clamp-2"
+                  }`}
               >
                 {product.short_description}
               </div>
@@ -468,9 +462,8 @@ export default function ProductView({
               </span>
               <span className="text-base font-bold text-qpurple">
                 {parseInt(product.qty) !== 0 && parseInt(product.qty) > 0
-                  ? `${product.qty} ${
-                      langCntnt && langCntnt.Products_Available
-                    } `
+                  ? `${product.qty} ${langCntnt && langCntnt.Products_Available
+                  } `
                   : `${langCntnt && langCntnt.Products_not_Available}`}
               </span>
             </div>
@@ -645,13 +638,12 @@ export default function ProductView({
 
               <div className="flex space-x-5 items-center">
                 <FacebookShareButton
-                  url={`${
-                    typeof window !== "undefined" &&
+                  url={`${typeof window !== "undefined" &&
                     window.location.origin &&
                     window.location.origin +
-                      "/single-product?slug=" +
-                      product.slug
-                  }`}
+                    "/product/" +
+                    product.slug
+                    }`}
                   quotes={product.name}
                 >
                   <span className="cursor-pointer">
@@ -670,13 +662,12 @@ export default function ProductView({
                   </span>
                 </FacebookShareButton>
                 <TwitterShareButton
-                  url={`${
-                    typeof window !== "undefined" &&
+                  url={`${typeof window !== "undefined" &&
                     window.location.origin &&
                     window.location.origin +
-                      "/single-product?slug=" +
-                      product.slug
-                  }`}
+                    "/product/" +
+                    product.slug
+                    }`}
                   title={product.name}
                 >
                   <span className="cursor-pointer">
