@@ -1,17 +1,17 @@
-import { useEffect, useState } from "react";
 import axios from "axios";
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter } from "next/router";
+import { useEffect, useState } from "react";
+import languageModel from "../../../utils/languageModel";
+import ProductCardRowStyleOne from "../Helpers/Cards/ProductCardRowStyleOne";
 import ProductCardStyleOne from "../Helpers/Cards/ProductCardStyleOne";
 import DataIteration from "../Helpers/DataIteration";
+import LoaderStyleOne from "../Helpers/Loaders/LoaderStyleOne";
 import Star from "../Helpers/icons/Star";
+import OneColumnAdsTwo from "../Home/ProductAds/OneColumnAdsTwo";
 import Layout from "../Partials/Layout";
 import ProductsFilter from "./ProductsFilter";
-import OneColumnAdsTwo from "../Home/ProductAds/OneColumnAdsTwo";
-import ProductCardRowStyleOne from "../Helpers/Cards/ProductCardRowStyleOne";
-import languageModel from "../../../utils/languageModel";
-import LoaderStyleOne from "../Helpers/Loaders/LoaderStyleOne";
-import { useRouter } from "next/router";
 
 export default function AllProductPage({ response, sellerInfo }) {
   const router = useRouter();
@@ -185,53 +185,53 @@ export default function AllProductPage({ response, sellerInfo }) {
     setNxtPage(response.data && response.data.products.next_page_url);
     setCategoriesFilter(
       response.data &&
-        response.data.categories.length > 0 &&
-        response.data.categories.map((item) => {
-          return {
-            ...item,
-            selected: false,
-          };
-        })
+      response.data.categories.length > 0 &&
+      response.data.categories.map((item) => {
+        return {
+          ...item,
+          selected: false,
+        };
+      })
     );
     setVariantsFilter(
       response.data &&
-        response.data.activeVariants.length > 0 &&
-        response.data.activeVariants.map((varient) => {
-          return {
-            ...varient,
-            active_variant_items:
-              varient.active_variant_items &&
-              varient.active_variant_items.length > 0 &&
-              varient.active_variant_items.map((variant_item) => {
-                return {
-                  ...variant_item,
-                  selected: false,
-                };
-              }),
-          };
-        })
+      response.data.activeVariants.length > 0 &&
+      response.data.activeVariants.map((varient) => {
+        return {
+          ...varient,
+          active_variant_items:
+            varient.active_variant_items &&
+            varient.active_variant_items.length > 0 &&
+            varient.active_variant_items.map((variant_item) => {
+              return {
+                ...variant_item,
+                selected: false,
+              };
+            }),
+        };
+      })
     );
     setBrands(
       response.data &&
-        response.data.brands.length > 0 &&
-        response.data.brands.map((item) => {
-          return {
-            ...item,
-            selected: false,
-          };
-        })
+      response.data.brands.length > 0 &&
+      response.data.brands.map((item) => {
+        return {
+          ...item,
+          selected: false,
+        };
+      })
     );
     const min = response.data &&
-        response.data.products.data &&
-        Math.min(
-            ...response.data.products.data.map((item) => parseInt(item.price))
-        );
-    const max =  response.data &&
-        response.data.products.data &&
-        Math.max(
-            ...response.data.products.data.map((item) => parseInt(item.price))
-        );
-    const volumeArr = [min,max];
+      response.data.products.data &&
+      Math.min(
+        ...response.data.products.data.map((item) => parseInt(item.price))
+      );
+    const max = response.data &&
+      response.data.products.data &&
+      Math.max(
+        ...response.data.products.data.map((item) => parseInt(item.price))
+      );
+    const volumeArr = [min, max];
     setVolume(volumeArr);
   }, [response.data]);
   useEffect(() => {
@@ -256,8 +256,8 @@ export default function AllProductPage({ response, sellerInfo }) {
         const brandsQuery =
           selectedBrandsFilterItem.length > 0
             ? selectedBrandsFilterItem.map((value) => {
-                return `brands[]=${value}`;
-              })
+              return `brands[]=${value}`;
+            })
             : [];
         const brandString =
           brandsQuery.length > 0
@@ -267,8 +267,8 @@ export default function AllProductPage({ response, sellerInfo }) {
         const categoryQuery =
           selectedCategoryFilterItem.length > 0
             ? selectedCategoryFilterItem.map((value) => {
-                return `categories[]=${value}`;
-              })
+              return `categories[]=${value}`;
+            })
             : [];
         const categoryString =
           categoryQuery.length > 0
@@ -278,8 +278,8 @@ export default function AllProductPage({ response, sellerInfo }) {
         const variantQuery =
           selectedVarientFilterItem.length > 0
             ? selectedVarientFilterItem.map((value) => {
-                return `variantItems[]=${value}`;
-              })
+              return `variantItems[]=${value}`;
+            })
             : [];
         const variantString =
           variantQuery.length > 0
@@ -287,12 +287,9 @@ export default function AllProductPage({ response, sellerInfo }) {
             : "";
         axios
           .get(
-            `${process.env.NEXT_PUBLIC_BASE_URL}api/search-product?${
-              brandString && brandString
-            }${categoryString && categoryString}${
-              variantString && variantString
-            }min_price=${volume[0]}&max_price=${volume[1]}${
-              sellerInfo ? `&shop_name=${sellerInfo.seller.slug}` : ""
+            `${process.env.NEXT_PUBLIC_BASE_URL}api/search-product?${brandString && brandString
+            }${categoryString && categoryString}${variantString && variantString
+            }min_price=${volume[0]}&max_price=${volume[1]}${sellerInfo ? `&shop_name=${sellerInfo.seller.slug}` : ""
             }`
           )
           .then((res) => {
@@ -479,10 +476,9 @@ export default function AllProductPage({ response, sellerInfo }) {
                       <Image
                         layout="fill"
                         objectFit="scale-down"
-                        src={`${
-                          process.env.NEXT_PUBLIC_BASE_URL +
+                        src={`${process.env.NEXT_PUBLIC_BASE_URL +
                           sellerInfo.seller.logo
-                        }`}
+                          }`}
                         alt="logo"
                         className="object-contain"
                       />
@@ -529,13 +525,12 @@ export default function AllProductPage({ response, sellerInfo }) {
                   className="mb-[30px]"
                   variantsFilter={variantsFilter}
                 />
-                {response.data && response.data.shopPageSidebarBanner && parseInt(response.data.shopPageSidebarBanner.status)===1 && (
+                {response.data && response.data.shopPageSidebarBanner && parseInt(response.data.shopPageSidebarBanner.status) === 1 && (
                   <div
                     style={{
-                      backgroundImage: `url(${
-                        process.env.NEXT_PUBLIC_BASE_URL +
+                      backgroundImage: `url(${process.env.NEXT_PUBLIC_BASE_URL +
                         response.data.shopPageSidebarBanner.image
-                      })`,
+                        })`,
                       backgroundSize: `cover`,
                       backgroundRepeat: `no-repeat`,
                     }}
@@ -635,11 +630,10 @@ export default function AllProductPage({ response, sellerInfo }) {
                         <button
                           onClick={() => setCardViewStyle("col")}
                           type="button"
-                          className={`hover:text-qpurple w-6 h-6 ${
-                            cardViewStyle === "col"
+                          className={`hover:text-qpurple w-6 h-6 ${cardViewStyle === "col"
                               ? "text-qpurple"
                               : "text-qgray"
-                          }`}
+                            }`}
                         >
                           <svg
                             xmlns="http://www.w3.org/2000/svg"
@@ -653,11 +647,10 @@ export default function AllProductPage({ response, sellerInfo }) {
                         <button
                           onClick={() => setCardViewStyle("row")}
                           type="button"
-                          className={`hover:text-qpurple w-6 h-6 ${
-                            cardViewStyle === "row"
+                          className={`hover:text-qpurple w-6 h-6 ${cardViewStyle === "row"
                               ? "text-qpurple"
                               : "text-qgray"
-                          }`}
+                            }`}
                         >
                           <svg
                             xmlns="http://www.w3.org/2000/svg"
@@ -729,11 +722,11 @@ export default function AllProductPage({ response, sellerInfo }) {
                       </div>
                     )}
                     {response.data && response.data.shopPageCenterBanner && parseInt(response.data.shopPageCenterBanner.status) === 1 && (
-                        <div className="w-full relative text-qblack mb-[40px]">
-                          <OneColumnAdsTwo
-                              data={response.data.shopPageCenterBanner}
-                          />
-                        </div>
+                      <div className="w-full relative text-qblack mb-[40px]">
+                        <OneColumnAdsTwo
+                          data={response.data.shopPageCenterBanner}
+                        />
+                      </div>
                     )}
 
                     {products && cardViewStyle === "col" && (
@@ -819,7 +812,7 @@ export default function AllProductPage({ response, sellerInfo }) {
                           Search Results:
                         </h2>
                         {!categoryExistInRoute &&
-                        relatedProducts.length === 0 ? (
+                          relatedProducts.length === 0 ? (
                           <>
                             <p className="text-lg text-qgray  mb-[200px]">
                               Your search -{" "}

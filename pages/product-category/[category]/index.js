@@ -26,11 +26,9 @@ export default function AllProductsPageData(data) {
 }
 export const getServerSideProps = async (context) => {
   try {
-    // const slug = encodeURIComponent(context.params.slug);
+    const slug = encodeURIComponent(context.params.category);
     const res = await fetch(
-      `${process.env.NEXT_PUBLIC_BASE_URL}api/product?${context.query.category
-        ? `category=${context.query.category}` : ""
-      }`
+      `${process.env.NEXT_PUBLIC_BASE_URL}api/product?${slug ? `category=${slug}` : ""}`
     );
     const data = await res.json();
     return {
