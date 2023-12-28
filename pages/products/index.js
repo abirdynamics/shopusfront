@@ -27,17 +27,11 @@ export default function AllProductsPageData(data) {
 export const getServerSideProps = async (context) => {
   try {
     const res = await fetch(
-      `${process.env.NEXT_PUBLIC_BASE_URL}api/product?${context.query.category
-        ? `category=${context.query.category}`
-        : context.query.sub_category
-          ? `sub_category=${context.query.sub_category}`
-          : context.query.child_category
-            ? `child_category=${context.query.child_category}`
-            : context.query.highlight
-              ? `highlight=${context.query.highlight}`
-              : context.query.brand
-                ? `brand=${context.query.brand}`
-                : ""
+      `${process.env.NEXT_PUBLIC_BASE_URL}api/product?${context.query.child_category
+        ? `child_category=${context.query.child_category}`
+        : context.query.highlight
+          ? `highlight=${context.query.highlight}`
+          : ""
       }`
     );
     const data = await res.json();

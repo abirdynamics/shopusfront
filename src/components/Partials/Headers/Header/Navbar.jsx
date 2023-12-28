@@ -83,10 +83,16 @@ export default function Navbar({ className }) {
                           key={item.id}
                           className="category-item transition-all duration-300 ease-in-out"
                         >
-                          <Link
+                          {/* <Link
                             href={{
                               pathname: "/products",
                               query: { category: item.slug },
+                            }}
+                            passHref
+                          > */}
+                          <Link
+                            href={{
+                              pathname: "/product-category/" + encodeURIComponent(megaMenuBanner.product_slug) + '/',
                             }}
                             passHref
                           >
@@ -157,10 +163,16 @@ export default function Navbar({ className }) {
                                     key={subItem.id}
                                     className="category-item"
                                   >
-                                    <Link
+                                    {/* <Link
                                       href={{
                                         pathname: "/products",
                                         query: { sub_category: subItem.slug },
+                                      }}
+                                      passHref
+                                    > */}
+                                    <Link
+                                      href={{
+                                        pathname: "/product-category/" + encodeURIComponent(item.slug) + "/" + encodeURIComponent(subItem.slug) + '/',
                                       }}
                                       passHref
                                     >
@@ -296,7 +308,7 @@ export default function Navbar({ className }) {
                                 > */}
                                 <Link
                                   href={{
-                                    pathname: "/product-category/" + encodeURIComponent(megaItem.category.slug),
+                                    pathname: "/product-category/" + encodeURIComponent(megaItem.category.slug) + '/',
                                   }}
                                 >
                                   <h1 className="text-sm font-700 text-qblack uppercase mb-[13px] cursor-pointer">
@@ -322,7 +334,7 @@ export default function Navbar({ className }) {
                                         > */}
                                         <Link
                                           href={{
-                                            pathname: "/product-category/" + encodeURIComponent(megaItem.category.slug) + "/" + encodeURIComponent(subItem.sub_category.slug),
+                                            pathname: "/product-category/" + encodeURIComponent(megaItem.category.slug) + "/" + encodeURIComponent(subItem.sub_category.slug) + '/',
                                           }}
                                           passHref
                                         >
@@ -365,12 +377,18 @@ export default function Navbar({ className }) {
                               </div>
                             </div>
                             <div className="w-[90px]">
-                              <Link
+                              {/* <Link
                                 href={{
                                   pathname: "/products",
                                   query: {
                                     category: megaMenuBanner.product_slug,
                                   },
+                                }}
+                                passHref
+                              > */}
+                              <Link
+                                href={{
+                                  pathname: "/product-category/" + encodeURIComponent(megaMenuBanner.product_slug) + '/',
                                 }}
                                 passHref
                               >
